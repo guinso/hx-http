@@ -3,6 +3,6 @@ namespace Hx\Http;
 
 interface InputServiceInterface {
 	
-	public function getInput();
+	public function getInput(HeaderReaderInterface $headerReader);
 }
 ?>

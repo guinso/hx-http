@@ -23,6 +23,10 @@ class InputService implements InputServiceInterface {
 	
 	private function getPlugin($contentType)
 	{
+		//use url param (GET) if no cotnent type is specified
+		if(empty($contentType))
+			$contentType = 'urlparam';
+		
 		if(array_key_exists($contentType, $this->plugins))
 			return $this->plugins[$contentType];
 		else

@@ -24,6 +24,10 @@ class OutputService implements OutputServiceInterface {
 	
 	private function getPlugin($formatType)
 	{
+		//use url param (GET) if no cotnent type is specified
+		if(empty($formatType))
+			$formatType = 'text';
+		
 		if(array_key_exists($formatType, $this->plugins))
 			return $this->plugins[$formatType];
 		else

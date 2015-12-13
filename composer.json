@@ -2,13 +2,22 @@
 	"name": "guinso/hx-http",
 	"type": "library",
 	"description": "HTTP input and output handler",
+	"keywords": ["http"]
 	"license": "MIT",
+	"authors": [
+        {
+            "name": "Benjamin Ching",
+            "email": "benjamin@yahoo.com",
+            "homepage": "-",
+            "role": "Developer"
+        }
+    ],
 	"require": {
 		"php": ">=5.6"
 	},
 	"autoload": {
 		"psr-0": {
-			"hx\\http\\": "src/"
+			"hx\\http": "src/"
 		}
 	}
 }

@@ -9,7 +9,7 @@ class InputService implements InputServiceInterface {
 		$this->plugins = array(
 			'application/json' => new Input\Json(),
 			'multipart/form-data' => new Input\Multipart(),
-			'application/x-www-form-urlencoded' => new Input\UriEncoded(),
+			'application/x-www-form-urlencoded' => new Input\UrlEncoded(),
 			'urlparam' => new Input\UrlParam()
 		);
 	}

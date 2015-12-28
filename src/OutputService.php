@@ -6,12 +6,14 @@ class OutputService implements OutputServiceInterface {
 	
 	public function __construct()
 	{
+		$statusCode = new StatusCode();
+		
 		$this->plugins = array(
-			'file' => new Output\File(),
-			'html' => new Output\Html(),
-			'json' => new Output\Json(),
-			'text' => new Output\Text(),
-			'xml' => new Output\Xml()
+			'file' => new Output\File($statusCode),
+			'html' => new Output\Html($statusCode),
+			'json' => new Output\Json($statusCode),
+			'text' => new Output\Text($statusCode),
+			'xml' => new Output\Xml($statusCode)
 		);
 	}
 	

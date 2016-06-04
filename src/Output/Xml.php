@@ -1,4 +1,6 @@
 <?php 
+declare(strict_types=1);
+
 namespace Hx\Http\Output;
 
 class Xml implements \Hx\Http\OutputInterface {
@@ -10,19 +12,19 @@ class Xml implements \Hx\Http\OutputInterface {
 		$this->statusCodeService = $statusCodeService;
 	}
 	
-	public function getFormatType()
+	public function getFormatType(): string
 	{
 		return 'xml';
 	}
 	
-	public function generateOutput($statusCode, Array $data = null)
+	public function generateOutput(int $statusCode, Array $data = null)
 	{
 		$this->writeHeader($statusCode);
 	
 		$this->writeBody($data);
 	}
 	
-	private function writeHeader($statusCode) 
+	private function writeHeader(int $statusCode) 
 	{
 		$msg = $this->statusCodeService->getStatusMessage($statusCode);
 		
@@ -31,14 +33,14 @@ class Xml implements \Hx\Http\OutputInterface {
 		header('Content-Type: text/xml; charset=utf-8');
 	}
 	
-	private function writeBody($data)
+	private function writeBody(array $data)
 	{
 		echo '<? xml version="1.0" encoding="UTF-8" ?>';
 		
 		$this->_writeMarkup($data);
 	}
 	
-	private function _writeMarkup(&$data)
+	private function _writeMarkup(array &$data)
 	{
 		foreach($data as $key => $value)
 		{

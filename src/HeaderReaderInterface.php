@@ -1,12 +1,26 @@
 <?php 
+declare(strict_types=1);
+
 namespace Hx\Http;
 
 interface HeaderReaderInterface {
 	
-	public function getContentType();
+	/**
+	 * Get Http content type
+	 * @return string
+	 */
+	public function getContentType(): string;
 	
-	public function getMethod();
+	/**
+	 * Get Http method
+	 * @return string
+	 */
+	public function getMethod(): string;
 	
-	public function getRequestUri();
+	/**
+	 * Get Http request URI
+	 * @return string
+	 */
+	public function getRequestUri(): string;
 }
 ?>

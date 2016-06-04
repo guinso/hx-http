@@ -2,6 +2,11 @@
 namespace Hx\Http;
 
 interface InputInterface {
-	public function getInput($method);
+	/**
+	 * Get Http request information
+	 * @param string $method
+	 * @return array
+	 */
+	public function getInput(string $method): array;
 }
 ?>

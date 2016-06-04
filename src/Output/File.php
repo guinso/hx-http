@@ -1,4 +1,6 @@
 <?php 
+declare(strict_types=1);
+
 namespace Hx\Http\Output;
 
 class File implements \Hx\Http\OutputInterface {
@@ -15,7 +17,7 @@ class File implements \Hx\Http\OutputInterface {
 		return 'file';
 	}
 	
-	public function generateOutput($statusCode, Array $data = null)
+	public function generateOutput(int $statusCode, Array $data = null)
 	{
 		$fileName = $data['fileName'];
 	
@@ -26,7 +28,7 @@ class File implements \Hx\Http\OutputInterface {
 		$this->writeBody($filePath);
 	}
 	
-	private function writeHeader($statusCode, $fileName, $filePath) 
+	private function writeHeader(int $statusCode, string $fileName, string $filePath) 
 	{
 		$msg = $this->statusCodeService->getStatusMessage($statusCode);
 		
@@ -45,7 +47,7 @@ class File implements \Hx\Http\OutputInterface {
 		header('Cache-Control: must-revalidate, post-check=0, pre-check=0');
 	}
 	
-	private function writeBody($filePath)
+	private function writeBody(string $filePath)
 	{
 		readfile($filePath);
 	}

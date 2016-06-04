@@ -1,7 +1,8 @@
 <?php 
+declare(strict_types=1);
+
 namespace Hx\Http\Output;
 
-use GuzzleHttp\head;
 class Json implements \Hx\Http\OutputInterface {
 
 	private $statusCodeService;
@@ -11,19 +12,19 @@ class Json implements \Hx\Http\OutputInterface {
 		$this->statusCodeService = $statusCodeService;
 	}
 	
-	public function getFormatType()
+	public function getFormatType(): string
 	{
 		return 'json';
 	}
 	
-	public function generateOutput($statusCode, Array $data = null)
+	public function generateOutput(int $statusCode, Array $data = null)
 	{
 		$this->writeHeader($statusCode);
 	
 		$this->writeBody($data);
 	}
 	
-	private function writeHeader($statusCode) 
+	private function writeHeader(int $statusCode) 
 	{
 		$msg = $this->statusCodeService->getStatusMessage($statusCode);
 		
@@ -32,7 +33,7 @@ class Json implements \Hx\Http\OutputInterface {
 		header('Content-Type: application/json; charset=utf-8');
 	}
 	
-	private function writeBody($data)
+	private function writeBody(array $data)
 	{
 		if($data === null)
 			echo "{}";

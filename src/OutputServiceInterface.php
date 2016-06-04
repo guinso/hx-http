@@ -1,8 +1,15 @@
 <?php 
+declare(strict_types=1);
+
 namespace Hx\Http;
 
 interface OutputServiceInterface {
 	
-	public function generateOutput($outputFormat, array $data = null);
+	/**
+	 * Generate HTTP output
+	 * @param string $outputFormat HTTP output format, json, text, file,...
+	 * @param array $data
+	 */
+	public function generateOutput(string $outputFormat, array $data = null);
 }
 ?>

@@ -1,4 +1,6 @@
 <?php 
+declare(strict_types=1);
+
 namespace Hx\Http;
 
 class OutputService implements OutputServiceInterface {
@@ -17,20 +19,19 @@ class OutputService implements OutputServiceInterface {
 		);
 	}
 	
-	public function generateOutput($outputFormat, array $data = null)
+	public function generateOutput(string $outputFormat, array $data = null)
 	{
 		return $this
 			->getPlugin($outputFormat)
 			->generateOutput(200, $data);
 	}
 	
-	private function getPlugin($formatType)
+	private function getPlugin(string $formatType): OutputInterface
 	{
 		//use url param (GET) if no cotnent type is specified
 		if(empty($formatType))
-			$formatType = 'text';
-		
-		if(array_key_exists($formatType, $this->plugins))
+			return $this->plugins['text'];
+		else if(array_key_exists($formatType, $this->plugins))
 			return $this->plugins[$formatType];
 		else
 			Throw new \Hx\Http\HttpException(

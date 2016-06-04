@@ -1,4 +1,6 @@
 <?php 
+declare(strict_types=1);
+
 namespace Hx\Http;
 
 interface OutputInterface {
@@ -8,11 +10,12 @@ interface OutputInterface {
 	 * @param unknown $data
 	 * @param int $statusCode
 	 */
-	public function generateOutput($statusCode, Array $data = null);
+	public function generateOutput(int $statusCode, Array $data = null);
 	
 	/**
-	 * Get generated output format type
+	 * Get HTTP output format type
+	 * @return string
 	 */
-	public function getFormatType();
+	public function getFormatType(): string;
 }
 ?>

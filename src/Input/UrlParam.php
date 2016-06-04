@@ -3,12 +3,12 @@ namespace Hx\Http\Input;
 
 class UrlParam implements \Hx\Http\InputInterface {
 	
-	public function getContentType()
+	public function getContentType(): string
 	{
 		return 'urlparam';
 	}
 	
-	public function getInput($method)
+	public function getInput(string $method): array
 	{
 		if ($method == 'GET')
 		{

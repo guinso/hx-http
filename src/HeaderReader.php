@@ -1,9 +1,11 @@
 <?php 
+declare(strict_types=1);
+
 namespace Hx\Http;
 
 class HeaderReader implements \Hx\Http\HeaderReaderInterface {
 	
-	public function getContentType()
+	public function getContentType(): string
 	{
 		if (array_key_exists("CONTENT_TYPE", $_SERVER))
 		{
@@ -24,7 +26,7 @@ class HeaderReader implements \Hx\Http\HeaderReaderInterface {
 			return '';
 	}
 	
-	public function getMethod()
+	public function getMethod(): string
 	{
 		/*
 		if ($_SERVER['REQUEST_METHOD'] == 'POST' &&
@@ -54,7 +56,7 @@ class HeaderReader implements \Hx\Http\HeaderReaderInterface {
 		return $_SERVER['REQUEST_METHOD'];
 	}
 	
-	public function getRequestUri()
+	public function getRequestUri(): string
 	{
 		//x return $_SERVER['REQUEST_URI']; //full uri path
 		

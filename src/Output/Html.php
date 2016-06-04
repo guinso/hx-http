@@ -1,4 +1,6 @@
 <?php 
+declare(strict_types=1);
+
 namespace Hx\Http\Output;
 
 class Html implements \Hx\Http\OutputInterface {
@@ -10,7 +12,7 @@ class Html implements \Hx\Http\OutputInterface {
 		$this->statusCodeService = $statusCodeService;
 	}
 	
-	public function getFormatType()
+	public function getFormatType(): string
 	{
 		return 'html';
 	}
@@ -22,7 +24,7 @@ class Html implements \Hx\Http\OutputInterface {
 		$this->writeBody($data['header'], $data['body']);
 	}
 	
-	private function writeHeader($statusCode) 
+	private function writeHeader(int $statusCode) 
 	{
 		$msg = $this->statusCodeService->getStatusMessage($statusCode);
 		
@@ -31,7 +33,7 @@ class Html implements \Hx\Http\OutputInterface {
 		header('Content-Type: text/html; charset=utf-8');
 	}
 	
-	private function writeBody($header, $body)
+	private function writeBody(string $header, string $body)
 	{
 		// this should be templatized in a real-world solution
 		echo '<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
@@ -44,7 +46,7 @@ class Html implements \Hx\Http\OutputInterface {
 			'</html>';
 	}
 	
-	private function getServerSignature() {
+	private function getServerSignature(): string {
 		return ($_SERVER['SERVER_SIGNATURE'] == '') ?
 		$_SERVER['SERVER_SOFTWARE'] . ' Server at ' .
 		$_SERVER['SERVER_NAME'] . ' Port ' . $_SERVER['SERVER_PORT'] :

@@ -1,14 +1,16 @@
 <?php 
+declare(strict_types=1);
+
 namespace Hx\Http\Input;
 
 class UrlEncoded implements \Hx\Http\InputInterface {
 	
-	public function getContentType()
+	public function getContentType(): string
 	{
 		return 'application/x-www-form-urlencoded';
 	}
 	
-	public function getInput($method)
+	public function getInput(string $method): array
 	{
 		if ($method == 'GET')
 		{

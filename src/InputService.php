@@ -1,4 +1,6 @@
 <?php 
+declare(strict_types=1);
+
 namespace Hx\Http;
 
 class InputService implements InputServiceInterface {
@@ -14,20 +16,19 @@ class InputService implements InputServiceInterface {
 		);
 	}
 	
-	public function getInput(HeaderReaderInterface $headerReader)
+	public function getInput(HeaderReaderInterface $headerReader): array
 	{
 		return $this
 			->getPlugin($headerReader->getContentType())
 			->getInput($headerReader->getMethod());
 	}
 	
-	private function getPlugin($contentType)
+	private function getPlugin(string $contentType): InputInterface
 	{
 		//use url param (GET) if no cotnent type is specified
 		if(empty($contentType))
-			$contentType = 'urlparam';
-		
-		if(array_key_exists($contentType, $this->plugins))
+			return $this->plugins['urlparam'];
+		else if(array_key_exists($contentType, $this->plugins))
 			return $this->plugins[$contentType];
 		else
 			Throw new \Hx\Http\HttpException(

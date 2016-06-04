@@ -1,4 +1,6 @@
 <?php 
+declare(strict_types=1);
+
 namespace Hx\Http\Output;
 
 class Text implements \Hx\Http\OutputInterface {
@@ -10,19 +12,19 @@ class Text implements \Hx\Http\OutputInterface {
 		$this->statusCodeService = $statusCodeService;
 	}
 	
-	public function getFormatType()
+	public function getFormatType(): string
 	{
 		return 'text';
 	}
 	
-	public function generateOutput($statusCode, Array $data = null)
+	public function generateOutput(int $statusCode, Array $data = null)
 	{
 		$this->writeHeader($statusCode);
 	
 		$this->writeBody($data['data']);
 	}
 	
-	private function writeHeader($statusCode) 
+	private function writeHeader(int $statusCode) 
 	{
 		$msg = $this->statusCodeService->getStatusMessage($statusCode);
 		
@@ -31,7 +33,7 @@ class Text implements \Hx\Http\OutputInterface {
 		header('Content-Type: text/plain; charset=utf-8');
 	}
 	
-	private function writeBody($data)
+	private function writeBody(string $data)
 	{
 		echo $data;
 	}

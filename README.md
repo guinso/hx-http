@@ -6,14 +6,14 @@ PHP Http input and output handler
 ```json
     {
         "require": {
-            "guinso/hx-db": "2.0.*"
+            "guinso/hx-http": "1.0.*"
         }
     }
 ```
 
 * __Manual__
 ```php
-    require_once('path-of-hxHttp-library/src/autoloader.php');
+    require_once('path-of-hx-http-library/src/autoloader.php');
 ```
 
 ## Example
@@ -82,7 +82,7 @@ $clientUploadTemporaryFilePath = $arrInfo['file']['your-client-specified-file-na
     $data = array("data" => "anything....");
     
     //generate plain text to client
-    //NOTE: output is not in Html format but marked as 'text/plain' MIME
+    //NOTE: output is not in Html format since it is marked as 'text/plain' MIME type
     $outputService->generateOutput('text', $data);
     ```
     

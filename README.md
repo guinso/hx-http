@@ -4,9 +4,17 @@ PHP Http input and output handler
 ## Install
 * __Composer__
 ```json
+    //for PHP 5.5
     {
         "require": {
             "guinso/hx-http": "1.0.*"
+        }
+    }
+    
+    //for PHP 7
+    {
+        "require": {
+            "guinso/hx-http": "2.0.*"
         }
     }
 ```
@@ -72,7 +80,7 @@ $clientUploadTemporaryFilePath = $arrInfo['file']['your-client-specified-file-na
       'filePath' => 'actual-physical-file-path'
     );
     
-    //download file to client
+    //download file to client (client never know physical file location)
     $outputService->generateOutput('file', $fileInfo);
     ```
     * Plain text format
